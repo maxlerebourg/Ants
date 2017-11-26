@@ -33,7 +33,7 @@ class Fourmis extends BaseUser
      * @var int
      *
      * @ORM\Column(name="age", type="integer")
-     * @Assert\NotBlank(message="Please enter your age.", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="Please enter your age.", groups={"Registration", "Profile","Edition"})
      * @Assert\Length(
      *     min=1,
      *     max=3,
@@ -52,7 +52,7 @@ class Fourmis extends BaseUser
      * @var string
      *
      * @ORM\Column(name="race", type="string", length=255)
-     * @Assert\NotBlank(message="Please enter your race.", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="Please enter your race.", groups={"Registration", "Profile","Edit"})
      * @Assert\Length(
      *     min=3,
      *     max=99,

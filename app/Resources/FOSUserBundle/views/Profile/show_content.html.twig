@@ -12,6 +12,8 @@
         <li>&nbsp;&nbsp;&nbsp;<a href="{{ path('app_remove',{'id':ami.id}) }}">remove</a> : {{ ami.username }} </li>
     {% endfor %}
     </ul>
+    <a class="btn btn-secondary" href="{{ path('fos_user_profile_edit') }}">Modify</a>
     <a class="btn btn-secondary" href="{{ path('fos_user_security_logout') }}">Log out</a>
+
 
 </div>
