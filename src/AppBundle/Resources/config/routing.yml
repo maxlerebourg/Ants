@@ -1,0 +1,12 @@
+app_home:
+    path:      /
+    defaults:
+        _controller:     AppBundle:Default:index
+app_add:
+    path:      /add/{id}
+    defaults:
+        _controller:     AppBundle:Default:addFriend
+app_remove:
+    path:      /remove/{id}
+    defaults:
+        _controller:     AppBundle:Default:removeFriend
