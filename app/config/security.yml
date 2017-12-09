@@ -11,13 +11,47 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
+        login:
+            pattern:  ^/api/login
+            stateless: true
+            anonymous: true
+            form_login:
+                check_path:               /api/login_check
+                success_handler:          lexik_jwt_authentication.handler.authentication_success
+                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+                require_previous_session: false
+        token:
+            pattern: ^/api/token
+            anonymous: true
+        register:
+            pattern: ^/api/register
+            anonymous: true
+        fourmis:
+            pattern: ^/api/fourmis
+            anonymous: true
+        search:
+            pattern: ^/api/search/
+            anonymous: true
+        api:
+            pattern: ^/api
+            provider:  fos_userbundle
+            stateless: true
+            guard:
+                authenticators:
+                    - 'jwt_token_authenticator'
         main:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
-            logout:       true
+                #csrf_token_generator: security.csrf.token_manager
+                #login_path: fos_user_security_login
+                check_path: fos_user_security_check
+            logout:
+                path:       fos_user_security_logout
+                target:     /
             anonymous:    true
+
+
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

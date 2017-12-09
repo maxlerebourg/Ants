@@ -3,10 +3,11 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Fourmis
  *
@@ -43,6 +44,7 @@ class Fourmis extends BaseUser
     protected $age;
 
     /**
+     * @MaxDepth(1)
      * @var arrayCollection
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Fourmis", cascade={"persist"})
      */
@@ -156,7 +158,12 @@ class Fourmis extends BaseUser
      */
     public function getFamille()
     {
-        return $this->famille;
+        $family = $this->famille;
+        $list = new ArrayCollection();
+        foreach ($family as $ant){
+            $list->add(['id'=>$ant->getId(), 'username'=>$ant->getUsername()]);
+        }
+        return $list;
     }
 
     /**
@@ -189,5 +196,6 @@ class Fourmis extends BaseUser
         $this->famille->removeElement($famille);
         return $this;
     }
+
 }
 

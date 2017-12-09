@@ -34,3 +34,6 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
+    jwt_token_authenticator:
+        class: AppBundle\Security\JwtTokenAuthenticator
+        autowire: true

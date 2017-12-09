@@ -2,9 +2,22 @@ app_bundle:
     resource: '@AppBundle/Resources/config/routing.yml'
     prefix: /
 
+app:
+    resource: "@AppBundle/Controller/ApiController.php"
+    type:     annotation
+    prefix:   /api
+api:
+    type:     rest
+    resource: AppBundle\Controller\ApiController
+    prefix:   /api
+
+api_login_check:
+    path: /api/login_check
+
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix: /
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"

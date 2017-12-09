@@ -2,10 +2,10 @@
 {% block body %}
     {% for ants in list %}
         <p>
-            {% if not app.user or ants.username is not sameas(app.user.username) %}
+            {% if not app.user or ants.id is not sameas(app.user.id) %}
                 {% if app.user and ants not in app.user.famille %}
                     <a href="{{ path('app_add',{'id':ants.id}) }}">add</a>
-                {% endif %} {{ ants.username }} : {{ ants.race }}
+                {% endif %} {{ ants.id }} : {{ ants.race }}
             {% endif %}
         </p>
         <br>
